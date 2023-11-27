@@ -32,7 +32,6 @@ const Gallery = () => {
         <h3>Gallery</h3>
         <button className="btn">Delete Item</button>
       </div>
-
       <div className="gallery">
         {images.map((image) => (
           <div className="image-box" key={image.id}>
