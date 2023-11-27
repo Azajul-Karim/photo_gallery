@@ -30,7 +30,6 @@ const Gallery = () => {
     <div className="container">
       <div className="heading">
         <h3>Gallery</h3>
-
         <button className="btn">Delete Item</button>
       </div>
 
@@ -38,10 +37,8 @@ const Gallery = () => {
         {images.map((image) => (
           <div className="image-box" key={image.id}>
             <label className="image-container">
+            <input type="checkbox" className="checkbox" />
               <img src={image.imgSrc} alt="" style={{ width: "100%" }} />
-              <input type="checkbox" className="checkbox" />
-              <div className="checkbox-label"></div>
-              <div className="checkmark">&#10004;</div>
             </label>
           </div>
         ))}
