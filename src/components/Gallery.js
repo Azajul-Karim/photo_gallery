@@ -1,54 +1,79 @@
-import React from "react";
-import image1 from "./images/image-1.webp";
-import image10 from "./images/image-10.jpeg";
-import image11 from "./images/image-11.jpeg";
-import image2 from "./images/image-2.webp";
-import image3 from "./images/image-3.webp";
-import image4 from "./images/image-4.webp";
-import image5 from "./images/image-5.webp";
-import image6 from "./images/image-6.webp";
-import image7 from "./images/image-7.webp";
-import image8 from "./images/image-8.webp";
-import image9 from "./images/image-9.webp";
+import React, { useState } from "react";
 
 const Gallery = () => {
-  const images = [
-    { id: 1, imgSrc: image1 },
-    { id: 2, imgSrc: image2 },
-    { id: 3, imgSrc: image3 },
-    { id: 4, imgSrc: image4 },
-    { id: 5, imgSrc: image5 },
-    { id: 6, imgSrc: image6 },
-    { id: 7, imgSrc: image7 },
-    { id: 8, imgSrc: image8 },
-    { id: 9, imgSrc: image9 },
-    { id: 10, imgSrc: image10 },
-    { id: 11, imgSrc: image11 },
-  ];
+  const inputPath = "./images/";
 
+  const [images, setImages] = useState([
+    { id: 1, imgSrc: `${inputPath}image-1.webp`, selected: false },
+    { id: 2, imgSrc: `${inputPath}image-2.webp`, selected: false },
+    { id: 3, imgSrc: `${inputPath}image-3.webp`, selected: false },
+    { id: 4, imgSrc: `${inputPath}image-4.webp`, selected: false },
+    { id: 5, imgSrc: `${inputPath}image-5.webp`, selected: false },
+    { id: 6, imgSrc: `${inputPath}image-6.webp`, selected: false },
+    { id: 7, imgSrc: `${inputPath}image-7.webp`, selected: false },
+    { id: 8, imgSrc: `${inputPath}image-8.webp`, selected: false },
+    { id: 9, imgSrc: `${inputPath}image-9.webp`, selected: false },
+    { id: 10, imgSrc: `${inputPath}image-10.jpeg`, selected: false },
+    { id: 11, imgSrc: `${inputPath}image-11.jpeg`, selected: false },
+  ]);
+
+  function handleCheckUnchecked(e, id) {
+    e.preventDefault();
+
+    setImages((images) =>
+      images.map((image) => {
+        if (image.id === id) {
+          return { ...image, selected: !image.selected };
+        }
+        return image;
+      })
+    );
+  }
+
+  function itemsToDelete() {
+    return images.filter((image) => image.selected);
+  }
+
+  function handleDelete() {
+    
+    const items = itemsToDelete();
+  
+    setImages((images) =>
+      images.filter((image) => !items.includes(image))
+    );
+  
+  }
   return (
     <div className="container">
       <div className="heading">
         <h3>Gallery</h3>
-        <button className="btn">Delete Item</button>
+        <button className="btn" onClick={handleDelete}>
+          Delete Item
+        </button>
       </div>
+
       <div className="gallery">
         {images.map((image) => (
           <div className="image-box" key={image.id}>
             <label className="image-container">
-            <input type="checkbox" className="checkbox" />
+              <input
+                type="checkbox"
+                className="checkbox"
+                onChange={(e) => {
+                  handleCheckUnchecked(e, image.id);
+                }}
+              />
               <img src={image.imgSrc} alt="" style={{ width: "100%" }} />
             </label>
           </div>
         ))}
-
         <label className="custom-file-input">
           <input type="file" />
           <div className="custom-file-container">
             <div className="icon">
-              <i class="fa-solid fa-image"></i>
+              <i className="fa-solid fa-image"></i>
             </div>
-            <div class="text">
+            <div className="text">
               <strong>Add Images</strong>
             </div>
           </div>
