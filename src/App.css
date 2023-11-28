@@ -92,6 +92,7 @@ body {
   position: relative;
   top: 35px;
   left: 20px;
+  transition: 0.3s;
   transform: scale(1.5);
   opacity: 0;
 }

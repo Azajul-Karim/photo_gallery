@@ -17,17 +17,19 @@ const Gallery = () => {
     { id: 11, imgSrc: `${inputPath}image-11.jpeg`, selected: false },
   ]);
 
-  function handleCheckUnchecked(e, id) {
-    e.preventDefault();
+  const [selected, setSelected] = useState(0);
 
-    setImages((images) =>
-      images.map((image) => {
-        if (image.id === id) {
-          return { ...image, selected: !image.selected };
-        }
-        return image;
-      })
-    );
+  function handleCheckUnchecked(e, id) {
+    console.log(e, id);
+    let _images = images.map((image) => {
+      if (image.id === id) {
+        return { ...image, selected: e.target.checked };
+      }
+      return image;
+    });
+
+    setImages(_images);
+    setSelected(_images.filter((image) => image.selected).length);
   }
 
   function itemsToDelete() {
@@ -35,21 +37,21 @@ const Gallery = () => {
   }
 
   function handleDelete() {
-    
     const items = itemsToDelete();
-  
-    setImages((images) =>
-      images.filter((image) => !items.includes(image))
-    );
-  
+
+    setImages((images) => images.filter((image) => !items.includes(image)));
+
+    setSelected(0);
   }
   return (
     <div className="container">
       <div className="heading">
-        <h3>Gallery</h3>
-        <button className="btn" onClick={handleDelete}>
-          Delete Item
-        </button>
+        {selected > 0 ? <h3>{selected} items selected</h3> : <h3>Gallery</h3>}
+        {selected > 0 ? (
+          <button className="btn" onClick={handleDelete}>
+            Delete Item
+          </button>
+        ) : null}
       </div>
 
       <div className="gallery">
