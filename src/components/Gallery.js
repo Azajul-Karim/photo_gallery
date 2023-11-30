@@ -89,7 +89,7 @@ const Gallery = () => {
           </div>
         ))}
         <label className="custom-file-input">
-          <input type="file" onChange={imgUpload} />
+          <input type="file" onChange={imgUpload} multiple />
           <div className="custom-file-container">
             <div className="icon">
               <i className="fa-solid fa-image"></i>
