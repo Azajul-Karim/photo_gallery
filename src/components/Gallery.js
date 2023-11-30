@@ -18,9 +18,9 @@ const Gallery = () => {
   ]);
 
   const [selected, setSelected] = useState(0);
+  const [imgAdd, setImgAdd] = useState();
 
   function handleCheckUnchecked(e, id) {
-    console.log(e, id);
     let _images = images.map((image) => {
       if (image.id === id) {
         return { ...image, selected: e.target.checked };
@@ -43,10 +43,29 @@ const Gallery = () => {
 
     setSelected(0);
   }
+
+  function imgUpload(e) {
+    const newImgSrc = URL.createObjectURL(e.target.files[0]);
+
+    setImgAdd(newImgSrc);
+
+    const newImg = { id: 12, imgSrc: newImgSrc, selected: false };
+
+    setImages([...images, newImg]);
+    console.log(newImg);
+  }
+
   return (
     <div className="container">
       <div className="heading">
-        {selected > 0 ? <h3>{selected} items selected</h3> : <h3>Gallery</h3>}
+        {selected > 0 ? (
+          <h3>
+            {" "}
+            <i className="fa fa-check-square"></i> {selected} Files Selected
+          </h3>
+        ) : (
+          <h3>Gallery</h3>
+        )}
         {selected > 0 ? (
           <button className="btn" onClick={handleDelete}>
             Delete Item
@@ -70,7 +89,7 @@ const Gallery = () => {
           </div>
         ))}
         <label className="custom-file-input">
-          <input type="file" />
+          <input type="file" onChange={imgUpload} />
           <div className="custom-file-container">
             <div className="icon">
               <i className="fa-solid fa-image"></i>

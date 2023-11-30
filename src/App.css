@@ -23,7 +23,6 @@ body {
   justify-content: space-between;
 }
 
-/* Gallery */
 .gallery {
   padding: 2%;
   display: flex;
@@ -33,13 +32,12 @@ body {
 
 .gallery img {
   width: 200px;
-  height: 250px;
+  height: 200px;
   margin-bottom: 5%;
-  border-radius: 15px;
-  flex-basis: 25%;
   border: 1px solid #dfc7c7;
-  border-radius: 15px;
+  border-radius: 8px;
   cursor: pointer;
+  flex-basis: 20%;
 }
 
 .image-box:hover {
@@ -62,7 +60,6 @@ body {
 }
 
 .custom-file-input input {
-  position: relative;
   filter: alpha(opacity=0);
   opacity: 0;
   outline: none;
@@ -72,11 +69,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 250px;
-  height: 250px;
   justify-content: center;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
 }
 
 .icon {
@@ -84,19 +82,21 @@ body {
   margin-bottom: 20px;
 }
 
-.custom-file-container:hover {
-  border: 2px solid #4e3c3b;
-}
-
 .checkbox {
   position: relative;
-  top: 35px;
-  left: 20px;
+  top: 40px;
+  left: 25px;
   transition: 0.3s;
   transform: scale(1.5);
   opacity: 0;
 }
 
-.checkbox:checked {
+.checkbox:checked,
+.checkbox:hover {
   opacity: 1;
+}
+
+.fa-check-square {
+  color: rgb(0, 92, 200);
+  font-size: 20px;
 }
