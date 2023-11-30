@@ -84,7 +84,7 @@ const Gallery = () => {
                   handleCheckUnchecked(e, image.id);
                 }}
               />
-              <img src={image.imgSrc} alt="" style={{ width: "100%" }} />
+              <img className="img" src={image.imgSrc} alt="" style={{ width: "100%" }} />
             </label>
           </div>
         ))}
