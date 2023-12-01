@@ -84,12 +84,12 @@ const Gallery = () => {
                   handleCheckUnchecked(e, image.id);
                 }}
               />
-              <img className="img" src={image.imgSrc} alt="" style={{ width: "100%" }} />
+              <img src={image.imgSrc} alt="" style={{ width: "100%" }} />
             </label>
           </div>
         ))}
         <label className="custom-file-input">
-          <input type="file" onChange={imgUpload} multiple />
+          <input type="file" onChange={imgUpload} />
           <div className="custom-file-container">
             <div className="icon">
               <i className="fa-solid fa-image"></i>
