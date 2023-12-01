@@ -35,7 +35,6 @@ body {
 .gallery img {
   border: 1px solid #dfc7c7;
   cursor: pointer;
-  position: relative;
   overflow: hidden;
   border-radius: 10px;
   width: 100%;

@@ -38,19 +38,18 @@ const Gallery = () => {
 
   function handleDelete() {
     const items = itemsToDelete();
-
     setImages((images) => images.filter((image) => !items.includes(image)));
-
     setSelected(0);
   }
 
   function imgUpload(e) {
     const newImgSrc = URL.createObjectURL(e.target.files[0]);
-
     setImgAdd(newImgSrc);
-
-    const newImg = { id: 12, imgSrc: newImgSrc, selected: false };
-
+    const newImg = {
+      id: images.length + 1,
+      imgSrc: newImgSrc,
+      selected: false,
+    };
     setImages([...images, newImg]);
     console.log(newImg);
   }
