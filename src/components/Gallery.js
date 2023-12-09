@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useRef, useState } from "react";
 
 const Gallery = () => {
   const inputPath = "./images/";
@@ -51,9 +52,18 @@ const Gallery = () => {
       selected: false,
     };
     setImages([...images, newImg]);
-    console.log(newImg);
   }
 
+  const dragImg= useRef(0)
+  const dragOverImg = useRef(0)
+
+  function handleSort(){
+    const imgClone = [...images];
+    const temp = imgClone[dragImg.current];
+    imgClone[dragImg.current] = imgClone[dragOverImg.current];
+    imgClone[dragOverImg.current] = temp;
+    setImages(imgClone);
+  }
   return (
     <div className="container">
       <div className="heading">
@@ -73,8 +83,20 @@ const Gallery = () => {
       </div>
 
       <div className="gallery">
-        {images.map((image) => (
-          <div className="image-box" key={image.id}>
+        {images.map((image,index) => (
+          <div className="image-box" key={image.id} 
+          draggable
+          onDragStart={()=>{
+            dragImg.current = index;
+          }}
+          onDragEnter={()=>{
+            dragOverImg.current = index;
+          }}
+          onDragEnd={handleSort}
+          onDragOver={(e)=>{
+            e.preventDefault();
+          }}
+          >
             <label className="image-container">
               <input
                 type="checkbox"
