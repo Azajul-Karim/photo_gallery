@@ -57,7 +57,7 @@ const Gallery = () => {
   const dragImg= useRef(0)
   const dragOverImg = useRef(0)
 
-  function handleSort(){
+  function handleSortImg(){
     const imgClone = [...images];
     const temp = imgClone[dragImg.current];
     imgClone[dragImg.current] = imgClone[dragOverImg.current];
@@ -92,7 +92,7 @@ const Gallery = () => {
           onDragEnter={()=>{
             dragOverImg.current = index;
           }}
-          onDragEnd={handleSort}
+          onDragEnd={handleSortImg}
           onDragOver={(e)=>{
             e.preventDefault();
           }}
